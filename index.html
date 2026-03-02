@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide Assistance à Domicile - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles supplémentaires pour le carrousel d'arrière-plan avec illustrations */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            will-change: opacity;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /* Illustrations SVG générées */
+        .illustration {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay sombre pour lisibilité */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 40, 30, 0.7) 0%, rgba(0, 20, 15, 0.8) 100%);
+            z-index: 2;
+        }
+
+        /* Contenu au-dessus */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+        }
+
+        .hero-title, .hero-subtitle, .section-tag {
+            color: white;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title span {
+            color: #ffd966;
+        }
+
+        .hero-title span::after {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== AMÉLIORATION DE LA VISIBILITÉ DU HEADER ===== */
+        header {
+            background: rgba(0, 0, 0, 0.3); /* Fond semi-transparent */
+            backdrop-filter: blur(8px); /* Effet de flou pour détacher du fond */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Légère bordure */
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.5); /* Plus foncé au scroll */
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: white; /* Logo en blanc */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-icon {
+            background: white; /* Icône maison en blanc */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-icon::before,
+        .logo-icon::after {
+            background: var(--primary-dark); /* Toit et base de la maison en vert foncé */
+        }
+
+        .nav-links a {
+            color: white; /* Liens du menu en blanc */
+            font-weight: 600; /* Plus épais */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links a::after {
+            background: white; /* Soulignement en blanc */
+            height: 3px; /* Plus épais */
+            bottom: -6px; /* Légèrement plus bas */
+        }
+
+        .nav-links a:hover {
+            color: #ffd966; /* Jaune au survol */
+        }
+
+        .nav-links a.active {
+            color: #ffd966; /* Page active en jaune */
+            font-weight: 700;
+        }
+
+        .menu-toggle span {
+            background: white; /* Menu hamburger en blanc */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sur mobile, le menu déroulant garde un fond solide */
+        @media (max-width: 768px) {
+            .nav-links {
+                background: rgba(0, 40, 30, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 20px 20px;
+            }
+            
+            .nav-links a {
+                color: white;
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>Aide Assistance à Domicile</span>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Accueil</a>
+                <a href="services.html">Nos Services</a>
+                <a href="methode.html">Notre Méthode</a>
+                <a href="tarifs.html">Tarifs & Aides</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section avec carrousel d'illustrations -->
+        <section class="hero">
+            <!-- Carrousel d'illustrations SVG -->
+            <div class="background-slideshow">
+
+    <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2070&auto=format&fit=crop"
+             class="illustration"
+             alt="Infirmière aidant une personne âgée">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop"
+             class="illustration"
+             alt="Soins à domicile senior">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=2070&auto=format&fit=crop"
+             class="illustration"
+             alt="Infirmière et personne âgée sourire">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop"
+             class="illustration"
+             alt="Accompagnement personne âgée">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+             class="illustration"
+             alt="Aide à domicile infirmière senior">
+    </div>
+
+</div>
+            <!-- Overlay -->
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+                <div class="reveal">
+                    <span class="section-tag">Bien vieillir à domicile</span>
+                    <h1 class="hero-title">Bien vieillir à domicile, <span>en toute sérénité</span></h1>
+                    <p class="hero-subtitle">Des auxiliaires de vie compétentes et bienveillantes à vos côtés, jour après jour, pour préserver votre autonomie et votre qualité de vie.</p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn btn-primary">Demander un rappel gratuit</a>
+                        <a href="services.html" class="btn btn-outline">Découvrir nos services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reste du contenu identique... -->
+        <!-- Section Philosophie, Services, etc. -->
+        
+        <section>
+            <div class="container">
+                <div class="reveal text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <span class="section-tag">< À propos de notre approche ></span>
+                    <h2>Une simple aide ne suffit pas,<br>nous créons une <span style="color: var(--primary);">relation de confiance</span>.</h2>
+                </div>
+                <div class="philosophie-grid" style="margin-top: 4rem;">
+                    <div class="reveal">
+                        <p style="font-size: 1.2rem; color: var(--gray-600); margin-bottom: 1.5rem;">Chez Aide Assistance à Domicile, nous croyons que vieillir chez soi ne signifie pas y être maintenu, mais y vivre pleinement, à la mesure de ses aspirations et de ses capacités.</p>
+                        <p>Notre méthode "Faire Ensemble" place la personne âgée au cœur de son parcours. Nos auxiliaires de vie, formées en continu, savent allier savoir-faire technique et savoir-être relationnel pour préserver l'autonomie et la dignité de chacun.</p>
+                        <div style="margin-top: 2rem;">
+                            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                                <span style="background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✓</span>
+                                <span><strong>Auxiliaires salariés</strong> et formés en continu</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <span style="background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✓</span>
+                                <span><strong>Coordination médicale</strong> avec les professionnels de santé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-container reveal">
+                        <video loop muted autoplay playsinline poster="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services aperçu -->
+        <section style="background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);">
+            <div class="container">
+                <div class="reveal text-center">
+                    <span class="section-tag">< Nos Services ></span>
+                    <h2>Un accompagnement sur-mesure pour chaque besoin</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">🛏️</div>
+                        <h3>Aide au quotidien</h3>
+                        <p>Lever/coucher, toilette, habillage, élimination...</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Toilette</span>
+                            <span class="service-tag">Habillage</span>
+                            <span class="service-tag">Mobilité</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🍲</div>
+                        <h3>Nutrition & Courses</h3>
+                        <p>Préparation des repas, courses, aide à la prise des repas</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Repas équilibrés</span>
+                            <span class="service-tag">Courses</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🧹</div>
+                        <h3>Entretien du domicile</h3>
+                        <p>Ménage, lavage du linge, repassage, rangement</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Ménage</span>
+                            <span class="service-tag">Linge</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🚶</div>
+                        <h3>Lien social & Sorties</h3>
+                        <p>Promenades, accompagnement RV, jeux, stimulation</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Sorties</span>
+                            <span class="service-tag">Compagnie</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="services.html" class="btn btn-outline">Voir tous nos services →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Engagements -->
+        <section>
+            <div class="container">
+                <div class="reveal text-center">
+                    <span class="section-tag">< Nos Engagements ></span>
+                    <h2>Pourquoi nous choisir ?</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">👩‍⚕️</div>
+                        <div class="timeline-content">
+                            <h4>Auxiliaires formés et salariés</h4>
+                            <p>Recrutement exigeant, formation continue (maladies neuro-évolutives, gestes, relationnel) et accompagnement tout au long de leur parcours.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">🔄</div>
+                        <div class="timeline-content">
+                            <h4>Continuité de service garantie</h4>
+                            <p>Même en cas d'absence de l'intervenant habituel, nous assurons un remplacement pour ne jamais vous laisser sans solution.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">💶</div>
+                        <div class="timeline-content">
+                            <h4>Crédit d'impôt 50%</h4>
+                            <p>Bénéficiez de 50% de crédit d'impôt sur toutes nos prestations, avec possibilité d'avance immédiate.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">📋</div>
+                        <div class="timeline-content">
+                            <h4>Coordination médicale</h4>
+                            <p>Nous travaillons en lien avec les infirmiers, médecins, kinés pour une prise en charge globale et cohérente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Témoignage -->
+        <section>
+            <div class="container">
+                <div class="testimonials reveal">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <div class="testimonial-slide active">
+                            <div class="testimonial-content">Grâce à Aide Assistance à Domicile, maman a retrouvé le sourire. Son auxiliaire prend le temps de discuter et l'encourage à faire ses petites confitures. C'est bien plus qu'une aide, c'est une amie.</div>
+                            <div class="testimonial-author">— La famille de Madeleine, 89 ans</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">Je peux continuer à vivre chez moi sereinement. L'auxiliaire m'aide pour la toilette et les courses, mais surtout, elle est toujours de bonne humeur. C'est devenu ma confidente.</div>
+                            <div class="testimonial-author">— René, 92 ans</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">Éloignés géographiquement, nous avions besoin d'une solution fiable pour papy. L'équipe nous rassure au quotidien et s'adapte parfaitement à ses besoins changeants.</div>
+                            <div class="testimonial-author">— Christelle, petite-fille</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA avec formulaire -->
+        <section>
+            <div class="container">
+                <div class="cta-section reveal">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Discutons de votre projet ensemble</h2>
+                    <p style="margin-bottom: 2rem; opacity: 0.9;">Laissez-nous vos coordonnées, nous vous rappelons sous 24h pour échanger sans engagement.</p>
+                    <div class="cta-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Prénom" id="prenomAccueil">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Téléphone" id="telAccueil">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Code postal" id="cpAccueil">
+                        </div>
+                        <button class="btn-submit" id="btnRappelAccueil">Être rappelé</button>
+                    </div>
+                    <div class="checkbox-group" style="justify-content: center;">
+                        <input type="checkbox" id="rgpdAccueil">
+                        <label for="rgpdAccueil">J'accepte d'être contacté par téléphone</label>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;">* Vos données sont traitées pour répondre à votre demande.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="margin-bottom: 1rem;">Aide Assistance à Domicile</h4>
+                <p style="color: var(--gray-300);">Des auxiliaires de vie compétentes et bienveillantes à vos côtés.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Liens rapides</h5>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Nos Services</a>
+                <a href="methode.html">Notre Méthode</a>
+                <a href="tarifs.html">Tarifs & Aides</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h5>Légal</h5>
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <div>
+                <p>© 2024 Aide Assistance à Domicile</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Carrousel d'arrière-plan
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            // Changement toutes les 5 secondes
+            setInterval(nextSlide, 5000);
+        });
+    </script>
+</body>
+</html>
