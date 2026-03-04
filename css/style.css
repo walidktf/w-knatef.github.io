@@ -111,14 +111,13 @@ h3 {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #1a3a33;  /* Vert très foncé */
-    background: rgba(74, 155, 140, 0.15);
+    color: var(--primary-dark);  /* PLUS FONCÉ */
+    background: rgba(44, 94, 84, 0.1); /* Fond assorti */
     padding: 0.4rem 1rem;
     border-radius: 100px;
     margin-bottom: 1rem;
-    border: 1px solid var(--primary);
+    border: 1px solid rgba(44, 94, 84, 0.2);
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 /* ===== HEADER ===== */
