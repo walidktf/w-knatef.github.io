@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide Assistance à Domicile - Accueil</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/logomini.JPG">
+    <link rel="shortcut icon" href="images/logomini.JPG">
+    <link rel="apple-touch-icon" href="images/logomini.JPG">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles supplémentaires pour le carrousel */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            will-change: opacity;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .illustration {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 40, 30, 0.7) 0%, rgba(0, 20, 15, 0.8) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+        }
+
+        .hero-title, .hero-subtitle, .section-tag {
+            color: white;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title span {
+            color: #ffd966;
+        }
+
+        .hero-title span::after {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Header avec logo personnalisé */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            gap: 1rem;
+        }
+
+        .logo-wrapper {
+            background: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links a::after {
+            background: white;
+            height: 3px;
+            bottom: -6px;
+        }
+
+        .nav-links a:hover {
+            color: #ffd966;
+        }
+
+        .nav-links a.active {
+            color: #ffd966;
+            font-weight: 700;
+        }
+
+        .menu-toggle span {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                background: rgba(0, 40, 30, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 20px 20px;
+            }
+            
+            .nav-links a {
+                color: white;
+                text-shadow: none;
+            }
+            
+            .logo span {
+                display: none;
+            }
+        }
+
+        /* Améliorations LOGO et BROCHURE */
+        .logo-wrapper {
+            background: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        /* Améliorations BROCHURE */
+        .brochure-frame {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .brochure-frame:hover {
+            transform: scale(1.02);
+        }
+
+        .brochure-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-md);
+            display: block;
+            margin: 0 auto;
+            border: 3px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .brochure-image-container {
+            text-align: center;
+        }
+
+        .badge-quality {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--gray-800);
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(247, 183, 49, 0.4);
+            border: 2px solid white;
+        }
+
+        .brochure-section {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary-light);
+        }
+
+        .brochure-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .brochure-content h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .brochure-services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .service-category {
+            background: rgba(74, 155, 140, 0.05);
+            padding: 1.2rem;
+            border-radius: var(--border-radius-sm);
+            border-left: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .service-category:hover {
+            background: rgba(74, 155, 140, 0.1);
+            transform: translateX(5px);
+        }
+
+        .service-category h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .service-category ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .service-category li {
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-category li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .brochure-contact {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--primary);
+            border-radius: var(--border-radius-sm);
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item strong {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        /* MODAL DE ZOOM POUR LA BROCHURE */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: var(--border-radius);
+            border: 4px solid white;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 10000;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Correction du centrage des vidéos */
+        .video-carousel-container {
+            position: relative;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: #000;
+        }
+
+        .video-carousel {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Suppression du bouton play de la vidéo */
+        .video-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-container::after {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .brochure-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .brochure-services {
+                grid-template-columns: 1fr;
+            }
+            
+            .brochure-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .brochure-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé -->
+    <div class="cursor"></div>
+
+    <!-- Header avec logo personnalisé -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <div class="logo-wrapper">
+                    <img src="images/logo.jpg" alt="Aide Assistance à Domicile" class="logo-img">
+                </div>
+                <span>Aide Assistance à Domicile</span>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Accueil</a>
+                <a href="services.html">Nos Services</a>
+                <a href="methode.html">Notre Méthode</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section avec carrousel -->
+        <section class="hero">
+            <div class="background-slideshow">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2070&auto=format&fit=crop" class="illustration" alt="Infirmière aidant une personne âgée">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop" class="illustration" alt="Soins à domicile senior">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=2070&auto=format&fit=crop" class="illustration" alt="Infirmière et personne âgée sourire">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop" class="illustration" alt="Accompagnement personne âgée">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" class="illustration" alt="Aide à domicile infirmière senior">
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+                <div class="reveal">
+                    <span class="section-tag">Bien vieillir à domicile</span>
+                    <h1 class="hero-title">Bien vieillir à domicile, <span>en toute sérénité</span></h1>
+                    <p class="hero-subtitle">Des auxiliaires de vie compétentes et bienveillantes à vos côtés, jour après jour, pour préserver votre autonomie et votre qualité de vie.</p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn btn-primary">Demander un rappel gratuit</a>
+                        <a href="services.html" class="btn btn-outline">Découvrir nos services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Philosophie avec vidéos défilantes de personnes âgées -->
+        <section>
+            <div class="container">
+                <div class="reveal text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <span class="section-tag">< À propos de notre approche ></span>
+                    <h2>Une simple aide ne suffit pas,<br>nous créons une <span style="color: var(--primary);">relation de confiance</span>.</h2>
+                </div>
+                <div class="philosophie-grid" style="margin-top: 4rem;">
+                    <div class="reveal">
+                        <p style="font-size: 1.2rem; color: var(--gray-600); margin-bottom: 1.5rem;">Chez Aide Assistance à Domicile, nous croyons que vieillir chez soi ne signifie pas y être maintenu, mais y vivre pleinement, à la mesure de ses aspirations et de ses capacités.</p>
+                        <p>Notre méthode "Faire Ensemble" place la personne âgée au cœur de son parcours. Nos auxiliaires de vie, formées en continu, savent allier savoir-faire technique et savoir-être relationnel pour préserver l'autonomie et la dignité de chacun.</p>
+                        <div style="margin-top: 2rem;">
+                            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                                <span style="background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✓</span>
+                                <span><strong>Auxiliaires salariés</strong> et formés en continu</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <span style="background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✓</span>
+                                <span><strong>Coordination médicale</strong> avec les professionnels de santé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-carousel-container reveal">
+                        <div class="video-carousel" id="videoCarousel">
+                            <div class="video-slide active">
+                                <video loop muted autoplay playsinline>
+                                    <source src="https://cdn.pixabay.com/video/2020/04/12/35442-412391453_large.mp4" type="video/mp4">
+                                    Votre navigateur ne supporte pas la vidéo.
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video loop muted autoplay playsinline>
+                                    <source src="https://cdn.pixabay.com/video/2016/09/16/4754-181847621_large.mp4" type="video/mp4">
+                                    Votre navigateur ne supporte pas la vidéo.
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video loop muted autoplay playsinline>
+                                    <source src="https://cdn.pixabay.com/video/2017/06/22/10136-223179030_large.mp4" type="video/mp4">
+                                    Votre navigateur ne supporte pas la vidéo.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services aperçu -->
+        <section style="background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);">
+            <div class="container">
+                <div class="reveal text-center">
+                    <span class="section-tag">< Nos Services ></span>
+                    <h2>Un accompagnement sur-mesure pour chaque besoin</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">🛏️</div>
+                        <h3>Aide au quotidien</h3>
+                        <p>Lever/coucher, toilette, habillage, élimination...</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Toilette</span>
+                            <span class="service-tag">Habillage</span>
+                            <span class="service-tag">Mobilité</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🍲</div>
+                        <h3>Nutrition & Courses</h3>
+                        <p>Préparation des repas, courses, aide à la prise des repas</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Repas équilibrés</span>
+                            <span class="service-tag">Courses</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🧹</div>
+                        <h3>Entretien du domicile</h3>
+                        <p>Ménage, lavage du linge, repassage, rangement</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Ménage</span>
+                            <span class="service-tag">Linge</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🚶</div>
+                        <h3>Lien social & Sorties</h3>
+                        <p>Promenades, accompagnement RV, jeux, stimulation</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Sorties</span>
+                            <span class="service-tag">Compagnie</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="services.html" class="btn btn-outline">Voir tous nos services →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION BROCHURE AMÉLIORÉE AVEC ZOOM -->
+        <section>
+            <div class="container">
+                <div class="brochure-section reveal">
+                    <div class="brochure-grid">
+                        <!-- Image de la brochure - cliquable pour zoom -->
+                        <div class="brochure-image-container">
+                            <div class="brochure-frame" id="brochureFrame">
+                                <img src="images/brochure.jpg" alt="Brochure Aide Assistance à Domicile" class="brochure-image" id="brochureImg">
+                            </div>
+                            <div class="badge-quality">
+                                Agrément Qualité Préfectoral - N 311207 F 092 Q 66
+                            </div>
+                        </div>
+                        
+                        <!-- Contenu de la brochure -->
+                        <div class="brochure-content">
+                            <h2>AAAD vous assure un service de qualité</h2>
+                            <p style="font-size: 1.2rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 1.5rem;">Des auxiliaires de vie diplômées à votre service</p>
+                            
+                            <div class="brochure-services">
+                                <div class="service-category">
+                                    <h4>🧼 Hygiène et soins de confort</h4>
+                                    <ul>
+                                        <li>Aide à la toilette</li>
+                                        <li>Douche, bain</li>
+                                        <li>Capilave, pédiluve</li>
+                                        <li>Changes</li>
+                                        <li>Aide à l'habillage, déshabillage</li>
+                                        <li>Le lever, le coucher</li>
+                                        <li>Transferts, déplacements</li>
+                                        <li>Promenade accompagnée</li>
+                                        <li>Suivi de la prise de médicaments</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-category">
+                                    <h4>🧹 Travaux ménagers</h4>
+                                    <ul>
+                                        <li>Courses</li>
+                                        <li>Préparation des repas</li>
+                                        <li>Aide aux repas selon vos goûts</li>
+                                        <li>Entretien ménager du cadre de vie</li>
+                                        <li>Entretien du linge et vêtements</li>
+                                        <li>Réfection du lit</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-category">
+                                    <h4>🔧 AAAD c'est aussi</h4>
+                                    <ul>
+                                        <li>Ménage</li>
+                                        <li>Repassage</li>
+                                        <li>Petits bricolages</li>
+                                        <li>Jardinage</li>
+                                        <li>Promenades d'animaux</li>
+                                        <li>Accompagnement voiturage</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-category">
+                                    <h4>👧 Garde d'enfants +3 ans</h4>
+                                    <ul>
+                                        <li>Sorties d'école</li>
+                                        <li>Soutien scolaire</li>
+                                        <li>Cours à domicile</li>
+                                        <li>Garde d'enfants</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="brochure-contact">
+                                <div class="contact-item">
+                                    <span>📱</span>
+                                    <span><strong>06 59 40 70 92</strong></span>
+                                </div>
+                                <div class="contact-item">
+                                    <span>📞</span>
+                                    <span><strong>01 41 19 66 18</strong></span>
+                                </div>
+                                <div class="contact-item">
+                                    <span>⏰</span>
+                                    <span>Assistance 24/24</span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                                <a href="contact.html" class="btn btn-primary">Demander un devis gratuit</a>
+                                <a href="services.html" class="btn btn-outline">Voir tous nos services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal pour zoomer sur la brochure -->
+        <div id="brochureModal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+
+       <!-- Timeline Engagements -->
+        <section>
+            <div class="container">
+                <div class="reveal text-center">
+                    <span class="section-tag">< Nos Engagements ></span>
+                    <h2>Pourquoi nous choisir ?</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">👩‍⚕️</div>
+                        <div class="timeline-content">
+                            <h4>Auxiliaires formés et salariés</h4>
+                            <p>Recrutement exigeant, formation continue (maladies neuro-évolutives, gestes, relationnel) et accompagnement tout au long de leur parcours.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">🔄</div>
+                        <div class="timeline-content">
+                            <h4>Continuité de service garantie</h4>
+                            <p>Même en cas d'absence de l'intervenant habituel, nous assurons un remplacement pour ne jamais vous laisser sans solution.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">📋</div>
+                        <div class="timeline-content">
+                            <h4>Coordination médicale</h4>
+                            <p>Nous travaillons en lien avec les infirmiers, médecins, kinés pour une prise en charge globale et cohérente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot">⭐</div>
+                        <div class="timeline-content">
+                            <h4>Service personnalisé</h4>
+                            <p>Prestations adaptées à chaque besoin, sans engagement, pour un accompagnement sur mesure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>  
+
+        <!-- Témoignage -->
+        <section>
+            <div class="container">
+                <div class="testimonials reveal">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <div class="testimonial-slide active">
+                            <div class="testimonial-content">Grâce à Aide Assistance à Domicile, maman a retrouvé le sourire. Son auxiliaire prend le temps de discuter et l'encourage à faire ses petites confitures. C'est bien plus qu'une aide, c'est une amie.</div>
+                            <div class="testimonial-author">— La famille de Madeleine, 89 ans</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">Je peux continuer à vivre chez moi sereinement. L'auxiliaire m'aide pour la toilette et les courses, mais surtout, elle est toujours de bonne humeur. C'est devenu ma confidente.</div>
+                            <div class="testimonial-author">— René, 92 ans</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">Éloignés géographiquement, nous avions besoin d'une solution fiable pour papy. L'équipe nous rassure au quotidien et s'adapte parfaitement à ses besoins changeants.</div>
+                            <div class="testimonial-author">— Christelle, petite-fille</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA avec formulaire -->
+        <section>
+            <div class="container">
+                <div class="cta-section reveal">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Discutons de votre projet ensemble</h2>
+                    <p style="margin-bottom: 2rem; opacity: 0.9;">Laissez-nous vos coordonnées, nous vous rappelons sous 24h pour échanger sans engagement.</p>
+                    <div class="cta-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Prénom" id="prenomAccueil">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Téléphone" id="telAccueil">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Code postal" id="cpAccueil">
+                        </div>
+                        <button class="btn-submit" id="btnRappelAccueil">Être rappelé</button>
+                    </div>
+                    <div class="checkbox-group" style="justify-content: center;">
+                        <input type="checkbox" id="rgpdAccueil">
+                        <label for="rgpdAccueil">J'accepte d'être contacté par téléphone</label>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;">* Vos données sont traitées pour répondre à votre demande.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="margin-bottom: 1rem;">Aide Assistance à Domicile</h4>
+                <p style="color: var(--gray-300);">Des auxiliaires de vie diplômées à votre service</p>
+                <p style="color: var(--gray-300); margin-top: 1rem;">Agrément Qualité Préfectoral - N 311207 F 092 Q 66</p>
+            </div>
+            <div class="footer-links">
+                <h5>Liens rapides</h5>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Nos Services</a>
+                <a href="methode.html">Notre Méthode</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h5>Légal</h5>
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <div>
+                <p>© 2024 Aide Assistance à Domicile</p>
+                <p style="color: var(--gray-300);">📞 01 41 19 66 18 (24/24)</p>
+                <p style="color: var(--gray-300);">📱 06 59 40 70 92</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carrousel d'arrière-plan
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            setInterval(nextSlide, 5000);
+
+            // ZOOM SUR LA BROCHURE
+            const brochureImg = document.getElementById('brochureImg');
+            const modal = document.getElementById('brochureModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.close-modal');
+
+            if (brochureImg) {
+                brochureImg.addEventListener('click', function() {
+                    modal.classList.add('show');
+                    modalImg.src = this.src;
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove('show');
+                });
+            }
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            // CARROUSEL VIDÉO
+            const videoSlides = document.querySelectorAll('.video-slide');
+            if (videoSlides.length > 0) {
+                let currentVideo = 0;
+                
+                function nextVideo() {
+                    videoSlides[currentVideo].classList.remove('active');
+                    currentVideo = (currentVideo + 1) % videoSlides.length;
+                    videoSlides[currentVideo].classList.add('active');
+                }
+                
+                setInterval(nextVideo, 8000);
+            }
+        });
+    </script>
+</body>
+</html>
