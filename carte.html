@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>La Carte | Niagara Café - Cuisine traditionnelle à Courbevoie</title>
+  <meta name="description" content="Découvrez la carte du Niagara Café : entrées, plats, desserts, cocktails et vins. Une cuisine généreuse et savoureuse élaborée avec des produits frais.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0f0f10;
+      font-family: 'Inter', sans-serif;
+      color: #f3efe8;
+      line-height: 1.5;
+    }
+
+    .topbar {
+      background: #090909;
+      color: #c8c1b7;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 0.85rem;
+      padding: 10px 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,12,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      background: #1f1b17;
+      border-radius: 50%;
+      padding: 6px;
+      border: 1px solid rgba(200, 154, 86, 0.4);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #ecd9c2;
+    }
+
+    .brand-text span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #c89a56;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #ece3d9;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      border-bottom-color: #c89a56;
+      color: #f3e2ce;
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('images/assiette.png') center/cover;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(200,154,86,0.3);
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: #e9dfd3;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    main {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 500;
+      color: #ecd9c2;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #b7aa9a;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .menu-card {
+      background: #1a1816;
+      border-radius: 28px;
+      padding: 32px;
+      border: 1px solid rgba(200,154,86,0.2);
+      transition: 0.3s;
+    }
+
+    .menu-card:hover {
+      border-color: rgba(200,154,86,0.5);
+      transform: translateY(-4px);
+    }
+
+    .menu-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #e2bc83;
+      margin-bottom: 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(200,154,86,0.3);
+      padding-bottom: 12px;
+    }
+
+    .dish {
+      padding: 16px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.1);
+    }
+
+    .dish:last-child {
+      border-bottom: none;
+    }
+
+    .dish-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .dish-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #f3efe8;
+    }
+
+    .dish-price {
+      font-weight: 600;
+      color: #e2bc83;
+      font-size: 1.05rem;
+    }
+
+    .dish-desc {
+      color: #b7aa9a;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .drinks-section {
+      background: #131110;
+      border-radius: 28px;
+      padding: 48px;
+      margin-top: 40px;
+      border: 1px solid rgba(200,154,86,0.2);
+    }
+
+    .drinks-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #ecd9c2;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .drink-card {
+      text-align: center;
+      padding: 24px 20px;
+      background: #1a1816;
+      border-radius: 20px;
+      transition: 0.3s;
+      border: 1px solid rgba(200,154,86,0.2);
+    }
+
+    .drink-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200,154,86,0.5);
+    }
+
+    .drink-card h4 {
+      color: #e2bc83;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .drink-card p {
+      color: #b7aa9a;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .drink-price {
+      color: #c89a56;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .info-highlight {
+      text-align: center;
+      margin-top: 48px;
+      padding: 32px;
+      background: #1a1816;
+      border-radius: 28px;
+      border: 1px solid rgba(200,154,86,0.2);
+    }
+
+    .info-highlight p {
+      color: #b7aa9a;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #c89a56;
+      color: #0f0f10;
+      padding: 12px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #e2bc83;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #070504;
+      border-top: 1px solid rgba(200,154,86,0.2);
+      padding: 32px 0;
+      color: #b8aa9a;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .drinks-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .drinks-grid {
+        grid-template-columns: 1fr;
+      }
+      .drinks-section {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div>🍷 Bar • Restaurant • Brasserie — Cuisine maison & produits frais</div>
+    <div>📍 Courbevoie • Réservation : 06 71 16 40 59</div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c89a56'/%3E%3Ctext x='50' y='68' font-size='44' text-anchor='middle' fill='%231e1913' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E" alt="Niagara">
+      <div class="brand-text">
+        <strong>Niagara</strong>
+        <span>Bar - Restaurant - Brasserie</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="carte.html" class="active">Carte</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="privatisation.html">Privatisation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div>
+    <h1>La Carte</h1>
+    <p>Des plats généreux et savoureux, préparés avec des produits frais</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="section-title">
+      <h2>Notre sélection</h2>
+      <p>Une cuisine traditionnelle française revisitée avec passion</p>
+    </div>
+
+    <div class="menu-grid">
+      <!-- ENTRÉES -->
+      <div class="menu-card">
+        <h3>Entrées</h3>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Foie gras de canard maison</span>
+            <span class="dish-price">18€</span>
+          </div>
+          <div class="dish-desc">Miel et Armagnac, marmelade de pomme golden aux épices</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Œuf mollet aux lardons</span>
+            <span class="dish-price">8€</span>
+          </div>
+          <div class="dish-desc">Champignons, sauce meurette</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Salade d'avocat aux crevettes</span>
+            <span class="dish-price">9€</span>
+          </div>
+          <div class="dish-desc">Sauce cocktail maison</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Carpaccio de bœuf</span>
+            <span class="dish-price">9€</span>
+          </div>
+          <div class="dish-desc">Parmesan, basilic, filet d'huile d'olive</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Soupe à l'oignon gratinée</span>
+            <span class="dish-price">9€</span>
+          </div>
+          <div class="dish-desc">Classique revisité</div>
+        </div>
+      </div>
+
+      <!-- PLATS -->
+      <div class="menu-card">
+        <h3>Plats</h3>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Entrecôte Charolaise 300g</span>
+            <span class="dish-price">28€</span>
+          </div>
+          <div class="dish-desc">Pommes purée, champignons, sauce mignonette</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Confit de canard</span>
+            <span class="dish-price">22€</span>
+          </div>
+          <div class="dish-desc">Pommes sautées, salade</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Noix de Saint-Jacques</span>
+            <span class="dish-price">26€</span>
+          </div>
+          <div class="dish-desc">Jus de truffe et risotto crémeux</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Burger façon Niagara</span>
+            <span class="dish-price">17€</span>
+          </div>
+          <div class="dish-desc">Bœuf, oignons confits, cheddar, frites maison</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Tartare de bœuf</span>
+            <span class="dish-price">19€</span>
+          </div>
+          <div class="dish-desc">Assaisonnement maison, frites et salade</div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-card">
+        <h3>Desserts</h3>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Moelleux au chocolat</span>
+            <span class="dish-price">7.5€</span>
+          </div>
+          <div class="dish-desc">Glace vanille maison</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Crème brûlée</span>
+            <span class="dish-price">7.5€</span>
+          </div>
+          <div class="dish-desc">Vanille de Madagascar</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Tiramisu façon Niagara</span>
+            <span class="dish-price">7.5€</span>
+          </div>
+          <div class="dish-desc">Recette signature de la maison</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Tarte Tatin</span>
+            <span class="dish-price">10€</span>
+          </div>
+          <div class="dish-desc">Glace vanille et Chantilly</div>
+        </div>
+        <div class="dish">
+          <div class="dish-top">
+            <span class="dish-name">Café gourmand</span>
+            <span class="dish-price">9€</span>
+          </div>
+          <div class="dish-desc">Café et 4 mignardises</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION BOISSONS -->
+    <div class="drinks-section">
+      <h3>Nos Cocktails & Boissons</h3>
+      <div class="drinks-grid">
+        <div class="drink-card">
+          <h4>🍸 Cocktails Classiques</h4>
+          <p>Mojito, Spritz, Piña Colada, Moscow Mule</p>
+          <div class="drink-price">9€</div>
+        </div>
+        <div class="drink-card">
+          <h4>🍺 Bières Pression</h4>
+          <p>Leffe, IPA, Grimbergen, Kronenbourg</p>
+          <div class="drink-price">4€ - 9€</div>
+        </div>
+        <div class="drink-card">
+          <h4>🍷 Vins</h4>
+          <p>Rouge, Blanc, Rosé - Au verre ou en pichet</p>
+          <div class="drink-price">Dès 5€</div>
+        </div>
+        <div class="drink-card">
+          <h4>☕ Boissons Chaudes</h4>
+          <p>Expresso, Cappuccino, Chocolat chaud, Thé</p>
+          <div class="drink-price">2.8€ - 5.2€</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-highlight">
+      <p>🍽️ Une cuisine maison, des produits frais, des saveurs authentiques.<br>Notre équipe est à votre disposition pour toute demande particulière.</p>
+      <a href="contact.html" class="btn">Réserver une table</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© Niagara Café — Cuisine traditionnelle française & terrasse ombragée</div>
+    <div>2 Bis Boulevard Saint Denis, 92400 Courbevoie • 06 71 16 40 59</div>
+  </div>
+</footer>
+
+</body>
+</html>

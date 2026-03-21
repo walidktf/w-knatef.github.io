@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact | Niagara Café - Réservation à Courbevoie</title>
+  <meta name="description" content="Contactez le Niagara Café pour une réservation, un devis de privatisation ou toute information. Réservez votre table en ligne ou par téléphone.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0f0f10;
+      font-family: 'Inter', sans-serif;
+      color: #f3efe8;
+      line-height: 1.5;
+    }
+
+    .topbar {
+      background: #090909;
+      color: #c8c1b7;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 0.85rem;
+      padding: 10px 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,12,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      background: #1f1b17;
+      border-radius: 50%;
+      padding: 6px;
+      border: 1px solid rgba(200, 154, 86, 0.4);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #ecd9c2;
+    }
+
+    .brand-text span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #c89a56;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #ece3d9;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      border-bottom-color: #c89a56;
+      color: #f3e2ce;
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1200&auto=format') center/cover;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(200,154,86,0.3);
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: #e9dfd3;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    main {
+      padding: 60px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .info-card, .form-card {
+      background: #1a1816;
+      border-radius: 28px;
+      padding: 36px;
+      border: 1px solid rgba(200,154,86,0.2);
+    }
+
+    .info-card h3, .form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #e2bc83;
+      margin-bottom: 24px;
+    }
+
+    .info-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .info-line:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      font-size: 1.4rem;
+      min-width: 40px;
+    }
+
+    .info-line strong {
+      display: block;
+      color: #ecd9c2;
+      margin-bottom: 4px;
+    }
+
+    .info-line span {
+      color: #b7aa9a;
+    }
+
+    .hours-list {
+      margin-top: 24px;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      list-style: none;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: #131110;
+      border: 1px solid rgba(200,154,86,0.3);
+      border-radius: 20px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #f3efe8;
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #c89a56;
+    }
+
+    .btn {
+      background: #c89a56;
+      color: #0f0f10;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #e2bc83;
+      transform: translateY(-2px);
+    }
+
+    .reseau-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn-reseau {
+      background: #2a241e;
+      padding: 10px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #e2bc83;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+
+    .btn-reseau:hover {
+      background: #c89a56;
+      color: #0f0f10;
+    }
+
+    footer {
+      background: #070504;
+      border-top: 1px solid rgba(200,154,86,0.2);
+      padding: 32px 0;
+      color: #b8aa9a;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 880px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div>🍷 Bar • Restaurant • Brasserie — Cuisine maison & produits frais</div>
+    <div>📍 Courbevoie • Réservation : 06 71 16 40 59</div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c89a56'/%3E%3Ctext x='50' y='68' font-size='44' text-anchor='middle' fill='%231e1913' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E" alt="Niagara">
+      <div class="brand-text">
+        <strong>Niagara</strong>
+        <span>Bar - Restaurant - Brasserie</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="carte.html">Carte</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="privatisation.html">Privatisation</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div>
+    <h1>Contact & Réservation</h1>
+    <p>Une question, une réservation ? N'hésitez pas à nous contacter</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="contact-grid">
+      <div class="info-card">
+        <h3>Informations pratiques</h3>
+        <div class="info-line">
+          <div class="info-icon">📍</div>
+          <div><strong>Adresse</strong><span>2 Bis Boulevard Saint Denis, 92400 COURBEVOIE</span></div>
+        </div>
+        <div class="info-line">
+          <div class="info-icon">📞</div>
+          <div><strong>Téléphone</strong><span>06 71 16 40 59</span></div>
+        </div>
+        <div class="info-line">
+          <div class="info-icon">✉️</div>
+          <div><strong>Email</strong><span>contact@niagaracafe.fr</span></div>
+        </div>
+        <div class="info-line">
+          <div class="info-icon">⏰</div>
+          <div><strong>Horaires</strong>
+            <ul class="hours-list" style="margin-top: 8px;">
+              <li><span>Lundi - Vendredi</span><span>8h → 1h</span></li>
+              <li><span>Samedi</span><span>9h → 1h</span></li>
+              <li><span>Dimanche</span><span>9h → 00h</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-line">
+          <div class="info-icon">🚇</div>
+          <div><strong>Accès</strong><span>Métro Esplanade de La Défense (Ligne 1) - RER A - Tram T2</span></div>
+        </div>
+        <div class="reseau-buttons">
+          <a href="#" class="btn-reseau">📅 TheFork</a>
+          <a href="#" class="btn-reseau">🛵 Uber Eats</a>
+          <a href="#" class="btn-reseau">🎉 Privateaser</a>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Formulaire de contact</h3>
+        <form action="#" method="post">
+          <div class="form-group">
+            <input type="text" placeholder="Votre nom *" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Votre e-mail *" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Votre téléphone">
+          </div>
+          <div class="form-group">
+            <select>
+              <option value="">Objet de la demande</option>
+              <option>Réservation (2 à 6 personnes)</option>
+              <option>Réservation groupe / séminaire</option>
+              <option>Privatisation complète</option>
+              <option>Demande d'information</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea rows="5" placeholder="Votre message (nombre de convives, date souhaitée, demande particulière...)"></textarea>
+          </div>
+          <button type="submit" class="btn">Envoyer la demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© Niagara Café — Cuisine traditionnelle française & terrasse ombragée</div>
+    <div>2 Bis Boulevard Saint Denis, 92400 Courbevoie • 06 71 16 40 59</div>
+  </div>
+</footer>
+
+</body>
+</html>

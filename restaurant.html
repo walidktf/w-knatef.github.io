@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Notre Restaurant | Niagara Café - Cuisine traditionnelle à Courbevoie</title>
+  <meta name="description" content="Le Niagara Café à Courbevoie vous accueille dans un cadre chaleureux pour découvrir notre cuisine traditionnelle française, élaborée avec des produits frais et de saison.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0f0f10;
+      font-family: 'Inter', sans-serif;
+      color: #f3efe8;
+      line-height: 1.5;
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: #090909;
+      color: #c8c1b7;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 0.85rem;
+      padding: 10px 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,12,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      background: #1f1b17;
+      border-radius: 50%;
+      padding: 6px;
+      border: 1px solid rgba(200, 154, 86, 0.4);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #ecd9c2;
+    }
+
+    .brand-text span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #c89a56;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #ece3d9;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      border-bottom-color: #c89a56;
+      color: #f3e2ce;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('images/restaurant.jpg') center/cover;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(200,154,86,0.3);
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: #e9dfd3;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 500;
+      color: #ecd9c2;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #b7aa9a;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* About Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #e2bc83;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: #cbc2b6;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .signature {
+      background: #1a1816;
+      border-left: 4px solid #c89a56;
+      padding: 24px;
+      border-radius: 20px;
+      margin-top: 24px;
+    }
+
+    .signature p {
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    .about-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-visual .big {
+      grid-column: span 2;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .about-visual .small {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .about-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .about-visual img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Valeurs */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .value-card {
+      background: #1a1816;
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 1px solid rgba(200,154,86,0.2);
+      transition: 0.3s;
+    }
+
+    .value-card:hover {
+      border-color: rgba(200,154,86,0.5);
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .value-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #e2bc83;
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      color: #cbc2b6;
+      font-size: 0.9rem;
+    }
+
+    /* Infos pratiques */
+    .info-highlight {
+      background: #131110;
+      border-radius: 28px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 40px;
+      border: 1px solid rgba(200,154,86,0.2);
+    }
+
+    .info-highlight h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #ecd9c2;
+      margin-bottom: 16px;
+    }
+
+    .info-highlight .btn {
+      display: inline-block;
+      margin-top: 24px;
+      background: #c89a56;
+      color: #0f0f10;
+      padding: 12px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .info-highlight .btn:hover {
+      background: #e2bc83;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #070504;
+      border-top: 1px solid rgba(200,154,86,0.2);
+      padding: 32px 0;
+      color: #b8aa9a;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 880px) {
+      .about-grid, .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-visual {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div>🍷 Bar • Restaurant • Brasserie — Cuisine maison & produits frais</div>
+    <div>📍 Courbevoie • Réservation : 06 71 16 40 59</div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c89a56'/%3E%3Ctext x='50' y='68' font-size='44' text-anchor='middle' fill='%231e1913' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E" alt="Niagara">
+      <div class="brand-text">
+        <strong>Niagara</strong>
+        <span>Bar - Restaurant - Brasserie</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="restaurant.html" class="active">Restaurant</a></li>
+        <li><a href="carte.html">Carte</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="privatisation.html">Privatisation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div>
+    <h1>Notre Restaurant</h1>
+    <p>Une cuisine traditionnelle française, élaborée avec passion et produits frais</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <h3>Une histoire de passion et de partage</h3>
+        <p>Le Niagara Café est bien plus qu'un simple restaurant. C'est un lieu de vie où se mêlent authenticité, générosité et savoir-faire. Notre équipe met tout son cœur à vous faire découvrir une cuisine traditionnelle française, revisitée avec modernité tout en préservant l'essence des recettes d'antan.</p>
+        <p>Que ce soit pour un déjeuner d'affaire, un dîner en famille ou un afterwork entre amis, notre établissement vous accueille dans une ambiance chaleureuse et conviviale. Chaque plat est préparé à partir de produits frais, sélectionnés avec soin auprès de producteurs locaux.</p>
+        <div class="signature">
+          <p>« La cuisine est un art, mais c'est aussi un moment de partage. Au Niagara, nous mettons un point d'honneur à offrir une expérience culinaire authentique et généreuse. »</p>
+          <p style="margin-top: 12px; font-weight: 500;">— La direction du Niagara Café</p>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="big">
+          <img src="images/restaurant.jpg" alt="Salle du restaurant Niagara" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format'">
+        </div>
+        <div class="small">
+          <img src="images/assiette.png" alt="Plat signature" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format'">
+        </div>
+        <div class="small">
+          <img src="images/cafe.jpg" alt="Ambiance café" onerror="this.src='https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=2069&auto=format'">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>Nos valeurs</h2>
+      <p>Ce qui fait la différence au Niagara Café</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h3>Produits frais</h3>
+        <p>Nous sélectionnons nos ingrédients auprès de producteurs locaux pour garantir fraîcheur et qualité.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">👨‍🍳</div>
+        <h3>Fait maison</h3>
+        <p>Tous nos plats sont préparés sur place, avec passion et savoir-faire.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Service attentionné</h3>
+        <p>Notre équipe est à votre écoute pour vous offrir un moment agréable et personnalisé.</p>
+      </div>
+    </div>
+
+    <div class="info-highlight">
+      <h3>Découvrez notre carte</h3>
+      <p>Entrées, plats, desserts, vins et cocktails... Une cuisine généreuse qui ravira vos papilles.</p>
+      <a href="carte.html" class="btn">Voir la carte</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© Niagara Café — Cuisine traditionnelle française & terrasse ombragée</div>
+    <div>2 Bis Boulevard Saint Denis, 92400 Courbevoie • 06 71 16 40 59</div>
+  </div>
+</footer>
+
+</body>
+</html>
